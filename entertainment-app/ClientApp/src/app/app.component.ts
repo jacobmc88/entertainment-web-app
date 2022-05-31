@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ShowService } from 'src/app/services/show.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,13 @@ export class AppComponent {
     isDataLoaded = false;
 
     constructor(
-        private apiService: ApiService
+        private apiService: ApiService,
+        private showService: ShowService
     ){
         this.apiService.getData().subscribe((result: any) => {
-            this.apiService.data = result;
+            this.showService.shows = result;
+            // this.apiService.formatData(result);
+            this.showService.setAllData();
             this.isDataLoaded = true;
         });
     }

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -16,6 +16,8 @@ import { TvSeriesComponent } from './components/tv-series/tv-series.component';
 import { BookmarkedMoviesComponent } from './components/bookmarked-movies/bookmarked-movies.component';
 import { BookmarkedTvSeriesComponent } from './components/bookmarked-tv-series/bookmarked-tv-series.component';
 import { ShowCardComponent } from './components/show-card/show-card.component';
+import { TrendingComponent } from './components/trending/trending.component';
+import { RecForYouComponent } from './components/rec-for-you/rec-for-you.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ShowCardComponent } from './components/show-card/show-card.component';
     TvSeriesComponent,
     BookmarkedMoviesComponent,
     BookmarkedTvSeriesComponent,
-    ShowCardComponent
+    ShowCardComponent,
+    TrendingComponent,
+    RecForYouComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
