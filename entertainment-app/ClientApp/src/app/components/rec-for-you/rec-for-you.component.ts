@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShowService } from 'src/app/services/show.service';
 
 @Component({
   selector: 'app-rec-for-you',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rec-for-you.component.css']
 })
 export class RecForYouComponent implements OnInit {
+    public recShows : any;
 
-  constructor() { }
+    constructor(
+        private showService: ShowService
+    ) { 
+        this.recShows = this.showService.shows;
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    
+    }
 
 }

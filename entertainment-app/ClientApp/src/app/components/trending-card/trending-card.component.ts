@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ShowService } from 'src/app/services/show.service';
 
 @Component({
   selector: 'app-trending-card',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrendingCardComponent implements OnInit {
 
-  constructor() { }
+    public showList: any;
+    public show: any;
+    public isBookmarked: boolean;
 
-  ngOnInit(): void {
-  }
+    constructor(
+        private showService: ShowService
+    ) {
+        this.showList = this.showService.shows; 
+        this.isBookmarked = false;
+    }
+
+    @Input() showIndex: any;
+
+    ngOnInit(): void {
+        this.show = this.showList[this.showIndex];
+        this.isBookmarked = this.show.isBookmarked;
+    }
+
+    public test(){
+        console.log("trending-card component");
+        console.log("Hello from the test! Id: " + this.showIndex);
+    }
 
 }

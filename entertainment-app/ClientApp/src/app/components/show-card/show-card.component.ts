@@ -24,25 +24,28 @@ export class ShowCardComponent implements OnInit {
         this.isBookmarked = false;
     }
 
-  @Input() trendingIndex: any;
-  @Input() isMovieList: boolean;
-  @Input() isTvSeriesList: boolean;
-  
-  @Input() isBookmarkMovieList: boolean;
-  @Input() isBookmarkTvSeriesList: boolean;
+    @Input() showIndex: any;
+    @Input() isMovieList: boolean;
+    @Input() isTvSeriesList: boolean;
 
-  ngOnInit(): void {
-      console.log("show-card:");
-      console.log(this.trendingIndex);
-      console.log("INFO:");
-      console.log(this.showService.trendingShows[this.trendingIndex]);
-      console.log("Show list:");
-      console.log(this.showList[this.trendingIndex]);
-      this.show = this.showList[this.trendingIndex];
-  }
+    @Input() isBookmarkMovieList: boolean;
+    @Input() isBookmarkTvSeriesList: boolean;
 
-  public test(){
-      console.log("Hello from the test! Id: " + this.trendingIndex);
-  }
+    ngOnInit(): void {
+        console.log("show-card:");
+        console.log(this.showIndex);
+        console.log("INFO:");
+        console.log(this.showService.trendingShows[this.showIndex]);
+        console.log("Show list:");
+        console.log(this.showList[this.showIndex]);
+        
+        this.show = this.showList[this.showIndex];
+        this.isBookmarked = this.show.isBookmarked;
+    }
+
+    public test(){
+        console.log("show-card component");
+        console.log("Hello from the test! Id: " + this.showIndex);
+    }
 
 }

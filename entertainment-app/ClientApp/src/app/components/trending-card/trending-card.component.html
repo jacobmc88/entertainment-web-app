@@ -1,1 +1,27 @@
-<p>trending-card works!</p>
+<div class="card-content-container">
+    <img class="show-image" src="{{show.thumbnail.regular.small}}" alt="">
+    <div class="bookmark-container">
+        <div class="bookmark-circle">
+            <a href="#" (click)="test()">
+                <img  src="assets/icon-bookmark-empty.svg" alt="">        
+            </a>
+        </div>
+    </div>
+    <div class="trending-card-info">
+        <div class="d-flex card-meta-container">
+            <p>{{show.year}}</p>
+            <ul class="card-meta-list">
+                <li>
+                    <div class="card-icon-container">
+                        <img class="card-icon-img" *ngIf="show.category == 'Movie'" src="assets/icon-category-movie.svg" alt="">
+                        <img class="card-icon-img" *ngIf="show.category == 'TV Series'" src="assets/icon-category-tv.svg" alt="">
+                        <p>{{show.category}}</p>
+                    </div>
+                </li>
+                <li>{{show.rating}}</li>
+            </ul>
+            
+        </div>
+        <h5>{{show.title}}</h5>
+    </div>
+</div>

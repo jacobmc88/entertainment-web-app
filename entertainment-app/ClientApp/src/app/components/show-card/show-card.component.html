@@ -1,9 +1,12 @@
-<div>
+<div class="card-content-container">
     <img class="show-image" src="{{show.thumbnail.regular.small}}" alt="">
-    
-    <a href="#" (click)="test()" style="z-index: 10; top:0; right:0; position: absolute; margin-right:3%;">
-        <img  src="assets/icon-bookmark-empty.svg" alt="">        
-    </a>
+    <div class="bookmark-container">
+        <div class="bookmark-circle">
+            <a href="#" (click)="test()">
+                <img  src="assets/icon-bookmark-empty.svg" alt="">        
+            </a>
+        </div>
+    </div>
     <div class="d-flex card-meta-container">
         <p>{{show.year}}</p>
         <ul class="card-meta-list">
@@ -16,5 +19,7 @@
             </li>
             <li>{{show.rating}}</li>
         </ul>
+        
     </div>
+    <h5>{{show.title}}</h5>
 </div>
