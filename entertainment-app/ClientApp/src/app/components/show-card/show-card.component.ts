@@ -10,6 +10,7 @@ export class ShowCardComponent implements OnInit {
 
     public showList: any;
     public show: any;
+    public isBookmarked: boolean;
 
     constructor(
         private showService: ShowService
@@ -20,6 +21,7 @@ export class ShowCardComponent implements OnInit {
         this.isBookmarkTvSeriesList = false;
         
         this.showList = this.showService.shows;
+        this.isBookmarked = false;
     }
 
   @Input() trendingIndex: any;

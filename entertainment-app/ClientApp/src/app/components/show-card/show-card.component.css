@@ -1,0 +1,33 @@
+.card-meta-container p{
+    color:#5A698F;
+}
+
+.card-meta-list{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    width: 100%;
+}
+
+.card-meta-list li{
+    float: right;
+}
+
+.card-icon-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.card-icon-container p{
+    margin: 0;
+}
+
+.card-icon-container img.card-icon-img{
+    margin-right: 0.3rem;
+    width: 12px;
+}
+
+.show-image{    
+    border-radius: 6%;
+}

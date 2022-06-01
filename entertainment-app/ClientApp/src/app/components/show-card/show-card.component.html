@@ -1,13 +1,21 @@
 <!-- <img src="assets/icon-bookmark-empty.svg" alt=""> -->
 <div>
-    <img src="assets/thumbnails/darker/regular/large.jpg">
+    <img class="show-image" src="{{show.thumbnail.regular.small}}" alt="">
     
     <a href="#" (click)="test()" style="z-index: 10; top:0; right:0; position: absolute; margin-right:3%;">
-        <img  src="assets/icon-bookmark-empty.svg" alt="">
+        <img  src="assets/icon-bookmark-empty.svg" alt="">        
     </a>
-    <div>
+    <div class="d-flex card-meta-container">
         <p>{{show.year}}</p>
-        <p>{{show.category}}</p>
-        <p>{{show.rating}}</p>
+        <ul class="card-meta-list">
+            <li>
+                <div class="card-icon-container">
+                    <img class="card-icon-img" *ngIf="show.category == 'Movie'" src="assets/icon-category-movie.svg" alt="">
+                    <img class="card-icon-img" *ngIf="show.category == 'TV Series'" src="assets/icon-category-tv.svg" alt="">
+                    <p>{{show.category}}</p>
+                </div>
+            </li>
+            <li>{{show.rating}}</li>
+        </ul>
     </div>
 </div>
