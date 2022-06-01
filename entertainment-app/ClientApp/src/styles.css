@@ -6,6 +6,10 @@ body{
     background-color: #161D2F;
 }
 
+h1, h2, h3, p{
+    color: #FFFF;
+}
+
 a {
   color: #0366d6;
 }
@@ -22,4 +26,38 @@ li{
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.card-meta-container p{
+    color:#5A698F;
+}
+
+.card-meta-list{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0;
+    width: 100%;
+}
+
+.card-meta-list li{
+    float: right;
+}
+
+.card-icon-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.card-icon-container p{
+    margin: 0;
+}
+
+.card-icon-img{
+    margin-right: 0.3rem;
+    width: 12px !important;
+}
+
+.show-image{    
+    border-radius: 6%;
 }
