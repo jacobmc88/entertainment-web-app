@@ -1,1 +1,8 @@
-<p>trending works!</p>
+<h3>Trending</h3>
+<div>
+    <carousel>
+        <app-show-card *ngFor="let show of trendingShows | keyvalue" 
+                        class="carousel-cell" trendingIndex={{show.key}}  id="{{show.key}}">            
+        </app-show-card>
+    </carousel>
+</div>

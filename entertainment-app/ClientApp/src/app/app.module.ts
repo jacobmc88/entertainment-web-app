@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +20,7 @@ import { BookmarkedTvSeriesComponent } from './components/bookmarked-tv-series/b
 import { ShowCardComponent } from './components/show-card/show-card.component';
 import { TrendingComponent } from './components/trending/trending.component';
 import { RecForYouComponent } from './components/rec-for-you/rec-for-you.component';
+import { TrendingCardComponent } from './components/trending-card/trending-card.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +37,13 @@ import { RecForYouComponent } from './components/rec-for-you/rec-for-you.compone
     BookmarkedTvSeriesComponent,
     ShowCardComponent,
     TrendingComponent,
-    RecForYouComponent
+    RecForYouComponent,
+    TrendingCardComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    IvyCarouselModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
