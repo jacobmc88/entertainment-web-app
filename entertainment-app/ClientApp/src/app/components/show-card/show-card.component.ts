@@ -31,14 +31,7 @@ export class ShowCardComponent implements OnInit {
     @Input() isBookmarkMovieList: boolean;
     @Input() isBookmarkTvSeriesList: boolean;
 
-    ngOnInit(): void {
-        console.log("show-card:");
-        console.log(this.showIndex);
-        console.log("INFO:");
-        console.log(this.showService.trendingShows[this.showIndex]);
-        console.log("Show list:");
-        console.log(this.showList[this.showIndex]);
-        
+    ngOnInit(): void {        
         this.show = this.showList[this.showIndex];
         this.isBookmarked = this.show.isBookmarked;
     }

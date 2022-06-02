@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+    public searchStr = "";
 
-  ngOnInit(): void {
-  }
+    constructor() { }
 
+    ngOnInit(): void {
+    
+    }
+
+    public keyDownTest(event:any){
+        console.log("search-bar-component keyDownTest():");
+        console.log(event);        
+        if("Backspace" === event.key){
+            this.searchStr = this.searchStr.substr(0, this.searchStr.length-1);
+        }else{
+            if("Enter" !== event.key){
+                this.searchStr += event.key;
+            }            
+        }
+        console.log(this.searchStr);
+        console.log("--------------");
+
+    }
 }
