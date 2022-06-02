@@ -22,6 +22,28 @@ li{
     color:#fff;
 }
 
+nav.div.nav-grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.nav-link > img{
+    width: 50%;
+}
+
+.nav-page-icons{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 50%;
+}
+
+.avatar-link{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

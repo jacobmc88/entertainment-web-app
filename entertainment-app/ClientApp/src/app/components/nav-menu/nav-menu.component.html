@@ -1,29 +1,12 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
+  <nav class="navbar navbar-expand-sm">
+    <div class="container nav-grid">
         <a class="navbar-brand" [routerLink]="['/']">
             <svg width="33" height="27" xmlns="http://www.w3.org/2000/svg">
                 <path d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z" fill="#FC4747"/>
             </svg>
         </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-center"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow nav-page-icons">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
@@ -62,7 +45,10 @@
             </a>
           </li> -->
         </ul>
-      </div>
+        <a class="nav-link avatar-link text-dark" [routerLink]="['/fetch-data']">
+            <img src="assets/image-avatar.png" alt="">
+        </a>
+      <!-- </div> -->
     </div>
   </nav>
 </header>
