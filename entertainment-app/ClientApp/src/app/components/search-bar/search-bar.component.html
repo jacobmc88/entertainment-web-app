@@ -1,4 +1,4 @@
 <div class="container search-container row">
     <i class="col-1 fa fa-search"></i>
-    <input (keydown)="keyDownTest($event)" class="col-11 search-input" type="text" placeholder="Search for movies or TV series">
+    <input id="inputField" (keyup)="keyDownTest($event)" class="col-11 search-input" type="text" placeholder="Search for movies or TV series">
 </div>

@@ -6,6 +6,7 @@ import { ApiService } from './api.service';
 })
 export class ShowService {
     public shows: any[];
+    public showsObj: any;
     public trendingMovies: any;
     public trendingTvSeries: any;
     public trendingShows: any;
@@ -14,12 +15,13 @@ export class ShowService {
     public bookmarkedMovies: any;
     public bookmarkedTvSeries: any;
     
-    public isSearching = true;
+    public isSearching = false;
 
     constructor(
         private apiService: ApiService
     ) {
         this.shows = [];
+        this.showsObj = {};
         this.trendingMovies = {};
         this.trendingTvSeries = {};
         this.trendingShows = {};
@@ -30,6 +32,8 @@ export class ShowService {
     }
 
     public setAllData(){
+        this.showsObj = Object.assign({}, this.shows);
+
         for(let i = 0; i < this.shows.length; i++){
             let show = this.shows[i];
 
