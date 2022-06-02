@@ -13,7 +13,7 @@ export class ShowCardComponent implements OnInit {
     public isBookmarked: boolean;
 
     constructor(
-        private showService: ShowService
+        public showService: ShowService
     ) { 
         this.isMovieList = false;
         this.isTvSeriesList = false;

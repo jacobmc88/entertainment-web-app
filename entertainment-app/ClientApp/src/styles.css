@@ -93,6 +93,10 @@ nav.div.nav-grid{
     margin: 0;
 }
 
+.card-icon-container svg{
+    margin-right: 4px;
+}
+
 .card-icon-img{
     margin-right: 0.3rem;
     width: 12px !important;

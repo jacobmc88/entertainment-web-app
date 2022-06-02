@@ -13,7 +13,7 @@ export class TrendingCardComponent implements OnInit {
     public isBookmarked: boolean;
 
     constructor(
-        private showService: ShowService
+        public showService: ShowService
     ) {
         this.showList = this.showService.shows; 
         this.isBookmarked = false;

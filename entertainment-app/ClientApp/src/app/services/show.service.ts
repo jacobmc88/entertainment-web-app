@@ -25,16 +25,20 @@ export class ShowService {
     ) {
         this.shows = [];        
         this.showsObj = {};
-        this.searchStr = "";
-        this.searchResults = {};
-        this.searchResCount = 0;
+        
         this.trendingMovies = {};
         this.trendingTvSeries = {};
         this.trendingShows = {};
+
         this.movies = {};        
         this.tvSeries = {};
+
         this.bookmarkedMovies = {};
         this.bookmarkedTvSeries = {};
+
+        this.searchStr = "";
+        this.searchResults = {};
+        this.searchResCount = 0;
     }
 
     public setAllData(){
@@ -100,6 +104,7 @@ export class ShowService {
         }
 
         this.shows[parseInt(key)].isBookmarked = !(this.shows[parseInt(key)].isBookmarked);
+        this.showsObj[key].isBookmarked = !(this.showsObj[key].isBookmarked); 
 
         //TODO - send to server.
     }
