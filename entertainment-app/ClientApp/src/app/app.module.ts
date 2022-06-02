@@ -21,6 +21,7 @@ import { ShowCardComponent } from './components/show-card/show-card.component';
 import { TrendingComponent } from './components/trending/trending.component';
 import { RecForYouComponent } from './components/rec-for-you/rec-for-you.component';
 import { TrendingCardComponent } from './components/trending-card/trending-card.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TrendingCardComponent } from './components/trending-card/trending-card.
     ShowCardComponent,
     TrendingComponent,
     RecForYouComponent,
-    TrendingCardComponent
+    TrendingCardComponent,
+    BookmarksComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,8 +49,9 @@ import { TrendingCardComponent } from './components/trending-card/trending-card.
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'movies', component: MoviesComponent },
+      { path: 'tv-series', component: TvSeriesComponent },
+      { path: 'bookmarks', component: BookmarksComponent },
     ])
   ],
   providers: [],

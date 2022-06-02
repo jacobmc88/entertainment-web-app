@@ -7,6 +7,6 @@ import { ShowService } from 'src/app/services/show.service';
 })
 export class HomeComponent {
     constructor(
-        private showService: ShowService
+        public showService: ShowService
     ){}
 }

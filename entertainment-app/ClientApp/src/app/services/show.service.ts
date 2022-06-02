@@ -13,6 +13,8 @@ export class ShowService {
     public tvSeries: any;
     public bookmarkedMovies: any;
     public bookmarkedTvSeries: any;
+    
+    public isSearching = true;
 
     constructor(
         private apiService: ApiService
