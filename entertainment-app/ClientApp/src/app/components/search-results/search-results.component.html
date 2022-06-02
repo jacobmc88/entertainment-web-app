@@ -1,1 +1,7 @@
-<p>search-results works!</p>
+<h3>Found {{showService.searchResCount}} results for '{{showService.searchStr}}'</h3>
+<br />
+<div class="grid-container">
+    <app-show-card *ngFor="let show of showService.searchResults | keyvalue" 
+                    showIndex={{show.key}}  id="{{show.key}}">            
+    </app-show-card>
+</div>

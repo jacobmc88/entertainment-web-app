@@ -6,14 +6,14 @@ import { ShowService } from 'src/app/services/show.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.css']
 })
-export class SearchResultsComponent implements OnInit {
-
+export class SearchResultsComponent implements OnInit {    
+    
     constructor(
-        private showService: ShowService
+        public showService: ShowService
     ) { }
 
     ngOnInit(): void {
-    
+        
     }
 
 }

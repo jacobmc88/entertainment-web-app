@@ -15,8 +15,6 @@ export class MoviesComponent implements OnInit {
         private showService: ShowService
     ) {
         this.movies = (this.router.url === '/movies' ? this.showService.movies : this.showService.bookmarkedMovies);
-        console.log("Movies component movies:");
-        console.log(this.movies);
      }
 
     ngOnInit(): void {

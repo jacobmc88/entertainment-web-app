@@ -1,8 +1,11 @@
 <body>
-  <app-nav-menu></app-nav-menu>
-  <app-search-bar></app-search-bar>
-  <br />
-  <div *ngIf="isDataLoaded" class="container">
-    <router-outlet></router-outlet>
-  </div>
+    <app-nav-menu></app-nav-menu>
+    <app-search-bar></app-search-bar>
+    <br />
+    <div *ngIf="showService.isSearching" class="container">
+        <app-search-results></app-search-results>
+    </div>
+    <div *ngIf="isDataLoaded && !showService.isSearching" class="container">
+        <router-outlet></router-outlet>
+    </div>
 </body>

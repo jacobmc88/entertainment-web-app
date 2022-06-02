@@ -12,7 +12,7 @@ export class AppComponent {
 
     constructor(
         private apiService: ApiService,
-        private showService: ShowService
+        public showService: ShowService
     ){
         this.apiService.getData().subscribe((result: any) => {
             this.showService.shows = result;

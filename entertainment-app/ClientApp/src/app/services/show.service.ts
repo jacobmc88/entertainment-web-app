@@ -16,12 +16,18 @@ export class ShowService {
     public bookmarkedTvSeries: any;
     
     public isSearching = false;
+    public searchStr: string;
+    public searchResults: any;
+    public searchResCount: number;
 
     constructor(
         private apiService: ApiService
     ) {
-        this.shows = [];
+        this.shows = [];        
         this.showsObj = {};
+        this.searchStr = "";
+        this.searchResults = {};
+        this.searchResCount = 0;
         this.trendingMovies = {};
         this.trendingTvSeries = {};
         this.trendingShows = {};
@@ -96,5 +102,40 @@ export class ShowService {
         this.shows[parseInt(key)].isBookmarked = !(this.shows[parseInt(key)].isBookmarked);
 
         //TODO - send to server.
+    }
+
+    public search(curRoute: string){
+        let searchObj = {};        
+        switch(curRoute){
+            case "/bookmarks":                
+                searchObj = Object.assign(this.bookmarkedMovies, this.bookmarkedTvSeries);                
+                break;
+            
+            case "/movies":                
+                searchObj = this.movies;
+                break;
+            
+            case "/tv-series":                
+                searchObj = this.tvSeries;
+                break;
+            
+            default:
+                //assuming home route                
+                searchObj = this.showsObj;
+                break;            
+        }
+        this.searchHelper(searchObj);
+    }
+
+    public searchHelper(searchObj: any){
+        this.searchResults = {};
+        this.searchResCount = 0;
+        for(const key in searchObj){
+            if( (searchObj[key].title).toLowerCase().includes(this.searchStr.toLowerCase())){
+                //then we have a match
+                this.searchResults[key] = searchObj[key];
+                this.searchResCount++;
+            }
+        }
     }
 }
