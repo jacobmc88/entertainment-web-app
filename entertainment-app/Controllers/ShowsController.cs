@@ -26,5 +26,10 @@ public class ShowsController : ControllerBase
         return json;
     }
 
+    [HttpPost("update-bookmarks")]
+    public IActionResult UpdateBookmarks(object data){
+        
+        return Ok();
+    }
     
 }

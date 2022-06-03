@@ -105,8 +105,10 @@ export class ShowService {
 
         this.shows[parseInt(key)].isBookmarked = !(this.shows[parseInt(key)].isBookmarked);
         this.showsObj[key].isBookmarked = !(this.showsObj[key].isBookmarked); 
-
-        //TODO - send to server.
+        
+        this.apiService.updateBookmarks(JSON.stringify(this.shows)).subscribe((res:any) =>{
+            console.log(res);
+        });
     }
 
     public search(curRoute: string){
