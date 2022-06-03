@@ -33,15 +33,9 @@ export class LoginComponent implements OnInit {
         this.returnUrl = "";
     }
 
-    ngOnInit(): void {
-                
-        
+    ngOnInit(): void {                        
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        // let ret = this.apiService.initialCall();
-        // this.apiService.initialCall(  ) .subscribe( (result: Response) => {  
-        //     console.log(result);
-        // });
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';        
     }
 
     // convenience getter for easy access to form fields
@@ -49,7 +43,6 @@ export class LoginComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        console.log("login component - onSubmit()");
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {
