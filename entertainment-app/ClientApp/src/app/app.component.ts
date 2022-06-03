@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ShowService } from 'src/app/services/show.service';
 import { Router } from '@angular/router';
@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-    title = 'app';
-    isDataLoaded = false;
-    isLoginOrSignup: boolean = true;
+    public title = 'app';
+    public isDataLoaded = false;
+    public isLoginOrSignup: boolean = true;
+    public topSpace: any;
+    public navSearchContainer: any;
+    public isDesktop: boolean = false;
 
     constructor(
         private router: Router,
@@ -25,8 +28,14 @@ export class AppComponent implements OnInit {
             this.isDataLoaded = true;
         });
     }
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.setPlaceholderDims();
+    }
 
     ngOnInit(): void{
+        
+
         this.router.events.subscribe(val => {
             this.isLoginOrSignup = ((this.router.url !== '/login' && this.router.url !== '/signup') ? false : true);            
             
@@ -41,6 +50,18 @@ export class AppComponent implements OnInit {
             }
 
         });
+    }
+
+    ngDoCheck(): void{
+        this.topSpace = document.getElementById("top-space");
+        // this.navSearchContainer = ( this.isDesktop ? document.getElementById("side-bar-container") : document.getElementById("nav-search-container"));
+        this.navSearchContainer =  document.getElementById("nav-search-container");
+        this.setPlaceholderDims();
+    }
+
+    public setPlaceholderDims(){
+        this.topSpace.style.width = this.navSearchContainer.offsetWidth + "px";
+        this.topSpace.style.height = this.navSearchContainer.offsetHeight + "px";
     }
 
 }
