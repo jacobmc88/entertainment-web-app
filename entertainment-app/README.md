@@ -18,6 +18,7 @@ Author: Jacob McAllister
     - [Useful resources](#useful-resources)
   - [Noteworthy](#noteworthy)
     - [Bonus](#bonus)
+    - [User Credentials for Testing](#credentials)
   - [Unimplemented](#unimplemented)
     - [Styles](#styles)
 
@@ -90,6 +91,13 @@ AngularJS is something that I've used over the last couple of years and have got
 User creation and login is working, and there is an auth-guard in Angular ensuring that all routes other than the /login and /signup routes are not accessible for users not logged in.
 
 All data for the shows is retrieve on from the server by the client on first load of the application. Any changes to bookmarks is sent back to the server and saved. Therefore, bookmarks are persisted through user logins and application starting and stopping.
+
+### User Credentials for Testing
+
+username: bottle
+password: abc
+
+You also can create your own user as well!
 
 
 ## Unimplemented
