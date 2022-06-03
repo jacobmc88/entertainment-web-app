@@ -42,7 +42,7 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpGet("logout")]
+    [HttpPost("logout")]
     public IActionResult Logout(){
         var session = HttpContext.Session;
         session.Clear();

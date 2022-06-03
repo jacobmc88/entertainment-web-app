@@ -52,7 +52,6 @@ export class AuthenticationService {
     }
 
     signup(username: string, password: string) : Observable<User> {
-        console.log("auth service signup");
         return this.http.post<User>('server/users/signup', { username : username, password : password })
             .pipe(map(user => {                
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -67,7 +66,6 @@ export class AuthenticationService {
        // remove user from local storage and set current user to null
        return this.http.post<any>('server/users/logout', {})
        .pipe(map( response => {     
-           console.log("auth service logout()");           
            localStorage.removeItem('currentUser');
            let empty = new User({id: '-1', email:''});
            this.currentUserSubject.next(empty);

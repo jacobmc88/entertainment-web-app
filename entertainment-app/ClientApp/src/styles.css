@@ -36,6 +36,10 @@ li{
     border-radius: 3%;
 }
 
+#avatar{
+    cursor:pointer;
+}
+
 nav.div.nav-grid{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;

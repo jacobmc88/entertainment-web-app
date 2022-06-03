@@ -46,16 +46,10 @@
                 </svg>
             </a>
           </li>
-          <!-- <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']">
-                <img src="assets/image-avatar.png" width="40%" alt="">
-            </a>
-          </li> -->
         </ul>
-        <a class="nav-link avatar-link text-dark" href="#">
-            <img src="assets/image-avatar.png" alt="">
-        </a>
-      <!-- </div> -->
+        <div class="nav-link avatar-link text-dark">
+            <img id="avatar" src="assets/image-avatar.png" alt="" (click)="logout()">
+        </div>
     </div>
   </nav>
 </header>

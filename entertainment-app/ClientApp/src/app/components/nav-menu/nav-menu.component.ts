@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,18 +9,17 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
     constructor(
-        public router: Router
+        public router: Router,
+        private authenticationService: AuthenticationService
       ){}
-    isExpanded = false;
 
-    collapse() {
-    this.isExpanded = false;
-    }
-
-    toggle() {
-    this.isExpanded = !this.isExpanded;
-    }
 
     ngOnInit() : void{
+    }
+
+    logout() {        
+        this.authenticationService.logout().subscribe( res => {            
+            this.router.navigate(['/login']);
+        } );
     }
 }
