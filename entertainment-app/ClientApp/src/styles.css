@@ -36,8 +36,19 @@ li{
     border-radius: 3%;
 }
 
+.form-group input.form-control{
+    border-top: none !important;
+    border-right: none !important;
+    border-left:none !important;
+    border-bottom:solid #fff 1px !important;
+}
+
 #avatar{
     cursor:pointer;
+}
+
+#nav-container{
+    justify-content: space-evenly;
 }
 
 nav.div.nav-grid{
@@ -53,7 +64,7 @@ nav.div.nav-grid{
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: 50%;
+    width: 40%;
 }
 
 .avatar-link{
@@ -172,6 +183,10 @@ img{
 @media only screen and (max-width: 1024px){
     .grid-container{        
         grid-template-columns: 1fr 1fr 1fr;        
+    }
+
+    .nav-page-icons{
+        width: 50%;
     }
 }
 

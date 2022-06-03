@@ -1,10 +1,11 @@
+<br />
 <div class="container light-background form-area">
     <br />
     <h1>Signup</h1>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" formControlName="username" placeholder="Email address" class="form-control"
+            <input type="text" formControlName="username" placeholder="Email address" class="form-control light-background"
                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Can't be empty</div>
@@ -15,7 +16,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" formControlName="password" placeholder="Password" class="form-control"
+            <input type="password" formControlName="password" placeholder="Password" class="form-control light-background"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Can't be empty</div>
@@ -26,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="repeatPassword">Password</label>
-            <input type="password" formControlName="repeatPassword" placeholder="Repeat Password" class="form-control"
+            <input type="password" formControlName="repeatPassword" placeholder="Repeat Password" class="form-control light-background"
                 [ngClass]="{ 'is-invalid': submitted && f.repeatPassword.errors }" />
             <div *ngIf="submitted && f.repeatPassword.errors" class="invalid-feedback">
                 <div *ngIf="!f.repeatPassword.errors.match">Do not match</div>
