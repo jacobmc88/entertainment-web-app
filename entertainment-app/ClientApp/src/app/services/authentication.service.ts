@@ -40,7 +40,7 @@ export class AuthenticationService {
      * @returns User
      */
      login(username: string, password: string) : Observable<User> {
-        return this.http.post<User>('server/login', { username : username, password : password })
+        return this.http.post<User>('server/users/login', { username : username, password : password })
             .pipe(map(user => {                
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
@@ -50,10 +50,20 @@ export class AuthenticationService {
     }
 
     logout() {        
+       // remove user from local storage and set current user to null
+       return this.http.post<any>('server/users/logout', {test: 'testvalue', something: 'something'})
+       .pipe(map( response => {                
+           localStorage.removeItem('currentUser');
+           let empty = new User({id: '-1', email:''});
+           this.currentUserSubject.next(empty);
+       }));
+    }
+
+    logout_hlp() {        
         // remove user from local storage and set current user to null
-        return this.http.post<any>('server/logout', {}).subscribe( (result: Response) => {                        
+        return this.http.post<any>('server/users/logout', {}).subscribe( (result: Response) => {                        
             localStorage.removeItem('currentUser');
-            let empty = new User({email:''});
+            let empty = new User({id: '-1', email:''});
             this.currentUserSubject.next(empty);
         });
     }

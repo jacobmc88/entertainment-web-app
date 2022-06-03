@@ -6,6 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { Interceptor } from './utilities/interceptor';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -64,7 +65,9 @@ import { LogoHeaderComponent } from './components/logo-header/logo-header.compon
       { path: 'signup', component: SignupComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

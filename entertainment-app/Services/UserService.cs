@@ -12,7 +12,7 @@ public interface IUserService
     AuthenticateResponse Login(AuthenticateRequest model);
     IEnumerable<User> GetAll();
     User GetById(int id);
-    void Register(RegisterRequest model);
+    void Signup(RegisterRequest model);
     void Update(int id, UpdateRequest model);
     void Delete(int id);
 }
@@ -57,7 +57,7 @@ public class UserService : IUserService
         return getUser(id);
     }
 
-    public void Register(RegisterRequest model)
+    public void Signup(RegisterRequest model)
     {
         // validate
         if (_context.Users.Any(x => x.Username == model.Username))

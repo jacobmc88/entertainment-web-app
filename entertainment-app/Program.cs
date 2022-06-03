@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
 using entertainment_app.Authorization;
 using entertainment_app.Helpers;
 using entertainment_app.Services;
@@ -34,10 +35,16 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    // options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromHours(4);
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.Name = ".entertainment.Session";
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+builder.Services.AddSession();
+builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo(@"./sessions"));
 
 var app = builder.Build();
 

@@ -11,7 +11,7 @@ using entertainment_app.Services;
 
 [Authorize]
 [ApiController]
-[Route("[controller]")]
+[Route("/server/[controller]")]
 public class UsersController : ControllerBase
 {
     private IUserService _userService;
@@ -33,22 +33,26 @@ public class UsersController : ControllerBase
     public IActionResult Authenticate(AuthenticateRequest model)
     {
         var response = _userService.Login(model);
-        Console.WriteLine("TESTING");
-        Console.WriteLine(response);
-
+        //being here means that _userService.Login() was successful
+        
         var session = HttpContext.Session;
-        string keyone = "thistest";
-        session.SetString(keyone, "hellothere");
-        string keytwo = "another";
-        session.SetString(keytwo, "hello-somewhere");
+        session.SetString(response.Id.ToString(), response.Username);    
 
-
-        foreach (string key in session.Keys) {
-            // Console.Write("key:" + key + " => :" + session[key].ToString());
-            Console.WriteLine(key + " => " + session.GetString(key));
+        // foreach (string key in session.Keys) {
+        //     // Console.Write("key:" + key + " => :" + session[key].ToString());
+        //     Console.WriteLine(key + " => " + session.GetString(key));
             
-        }
+        // }
         return Ok(response);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("logout")]
+    public IActionResult Logout(){
+        var session = HttpContext.Session;
+        session.Clear();
+
+        return Ok();
     }
 
     [AllowAnonymous]
@@ -66,10 +70,10 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpPost("register")]
-    public IActionResult Register(RegisterRequest model)
+    [HttpPost("signup")]
+    public IActionResult Signup(RegisterRequest model)
     {
-        _userService.Register(model);
+        _userService.Signup(model);
         return Ok(new { message = "Registration successful" });
     }
 
