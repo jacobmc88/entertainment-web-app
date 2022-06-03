@@ -38,11 +38,6 @@ public class UsersController : ControllerBase
         var session = HttpContext.Session;
         session.SetString(response.Id.ToString(), response.Username);    
 
-        // foreach (string key in session.Keys) {
-        //     // Console.Write("key:" + key + " => :" + session[key].ToString());
-        //     Console.WriteLine(key + " => " + session.GetString(key));
-            
-        // }
         return Ok(response);
     }
 

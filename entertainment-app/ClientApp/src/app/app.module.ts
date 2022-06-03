@@ -6,7 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { Interceptor } from './utilities/interceptor';
+import { Interceptor } from 'src/app/utilities/interceptor';
+import { AuthGuard } from 'src/app/utilities/auth-guard';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -57,10 +58,10 @@ import { LogoHeaderComponent } from './components/logo-header/logo-header.compon
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'movies', component: MoviesComponent },
-      { path: 'tv-series', component: TvSeriesComponent },
-      { path: 'bookmarks', component: BookmarksComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'movies', component: MoviesComponent, canActivate: [AuthGuard] },
+      { path: 'tv-series', component: TvSeriesComponent ,canActivate: [AuthGuard] },
+      { path: 'bookmarks', component: BookmarksComponent,canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
     ])
