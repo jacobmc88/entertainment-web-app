@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.IO;
 
 namespace entertainment_app.Controllers;
 
@@ -28,7 +31,11 @@ public class ShowsController : ControllerBase
 
     [HttpPost("update-bookmarks")]
     public IActionResult UpdateBookmarks(object data){
-        
+        // StreamWriter writer = new StreamWriter(this.DataPath);
+        string json = JsonSerializer.Serialize(data);
+        // writer.Write(json);
+        System.IO.File.WriteAllText(this.DataPath, json);
+
         return Ok();
     }
     
