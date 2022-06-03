@@ -11,6 +11,8 @@ import { User } from 'src/app/models/user';
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser : Observable<User>;
+    public userNameTaken: boolean = false;   
+    public errorMsg: string = "";
 
     constructor(
         private http: HttpClient
@@ -49,10 +51,23 @@ export class AuthenticationService {
             }));
     }
 
+    signup(username: string, password: string) : Observable<User> {
+        console.log("auth service signup");
+        return this.http.post<User>('server/users/signup', { username : username, password : password })
+            .pipe(map(user => {                
+                // store user details and jwt token in local storage to keep user logged in between page refreshes
+                // localStorage.setItem('currentUser', JSON.stringify(user));
+                // this.currentUserSubject.next(user);
+                console.log(user);
+                return user;
+            }));
+    }
+
     logout() {        
        // remove user from local storage and set current user to null
-       return this.http.post<any>('server/users/logout', {test: 'testvalue', something: 'something'})
-       .pipe(map( response => {                
+       return this.http.post<any>('server/users/logout', {})
+       .pipe(map( response => {     
+           console.log("auth service logout()");           
            localStorage.removeItem('currentUser');
            let empty = new User({id: '-1', email:''});
            this.currentUserSubject.next(empty);

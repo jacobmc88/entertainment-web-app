@@ -9,6 +9,9 @@
             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                 <div *ngIf="f.username.errors.required">Can't be empty</div>
             </div>
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.usernameTaken">{{takenMsg}}</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -17,13 +20,16 @@
             <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                 <div *ngIf="f.password.errors.required">Can't be empty</div>
             </div>
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="!f.password.errors.match">Do not match</div>
+            </div>
         </div>
         <div class="form-group">
             <label for="repeatPassword">Password</label>
             <input type="password" formControlName="repeatPassword" placeholder="Repeat Password" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.repeatPassword.errors }" />
             <div *ngIf="submitted && f.repeatPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.repeatPassword.errors">Does not match Password</div>
+                <div *ngIf="!f.repeatPassword.errors.match">Do not match</div>
             </div>
         </div>
         <div class="form-group">
@@ -36,7 +42,7 @@
             </div>
             <br />
             <div class="container d-flex justify-content-center">
-                <p>Already have an account? <a [routerLink]="['/Login']">Login</a></p>
+                <p>Already have an account? <a [routerLink]="['/login']">Login</a></p>
             </div>
         </div>
     </form>

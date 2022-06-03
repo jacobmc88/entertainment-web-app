@@ -11,11 +11,12 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-    signupForm: FormGroup;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
-    data: any;
+    public signupForm: FormGroup;
+    public takenMsg: string = "";
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
+    public data: any;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -43,23 +44,25 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-
+        this.authenticationService.userNameTaken = false;
+        this.authenticationService.errorMsg = "";
         // stop here if form is invalid
         if (this.signupForm.invalid) {
             return;
         }
         
         if(this.f.password.value !== this.f.repeatPassword.value){
-            this.f.repeatPassword.setErrors({'match':false}) 
+            this.f.repeatPassword.setErrors({'match':false});
+            this.f.password.setErrors({'match':false});
             return;
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.signup(this.f.username.value, this.f.password.value)
             .pipe(first())
             .subscribe(
-                data => {                                        
-                    if(!data){
+                data => {                            
+                    if(!data){                        
                         this.loading = false;
                         this.signupForm.reset();
                     }else{
@@ -69,6 +72,10 @@ export class SignupComponent implements OnInit {
                 },
                 error => {
                     this.loading = false;
+                    if(this.authenticationService.userNameTaken){
+                        this.f.username.setErrors({'usernameTaken':true});
+                        this.takenMsg = this.authenticationService.errorMsg;
+                    }
                 });
     }
 }

@@ -51,20 +51,6 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
-    [HttpGet("sometestsession")]
-    public IActionResult SomeTest(){
-        var session = HttpContext.Session;
-
-        if(string.IsNullOrEmpty(session.GetString("thistest")) || session.GetString("thistest") != "hellothere"){
-            Console.WriteLine("WRONG");
-        }else{
-            Console.WriteLine("OK");
-        }
-
-        return Ok();
-    }
-
-    [AllowAnonymous]
     [HttpPost("signup")]
     public IActionResult Signup(RegisterRequest model)
     {

@@ -25,11 +25,17 @@ export class Interceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
             if (err.status >= 400 && err.status < 500) {
-                // auto logout if 401 response returned from api
-                this.authenticationService.logout().subscribe( res => {
-                console.log("interceptor: navigating to /login");
-                this.router.navigate( ['/login'] );
-                } );
+                // auto logout if errors returned from api                
+                //not ideal check, but having issues setting property values on exception
+                //object thrown in C# from server.
+                if( !('error' in err && 'message' in err.error && err.error.message.includes('Username')) ){
+                    this.authenticationService.logout();
+                    this.router.navigate( ['/login'] );
+                }else{
+                    this.authenticationService.userNameTaken = true;
+                    this.authenticationService.errorMsg = err.error.message;
+                    
+                }
             }
 
             return throwError( 'error' );
