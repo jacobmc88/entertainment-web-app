@@ -9,7 +9,7 @@ import { ShowService } from 'src/app/services/show.service';
 })
 export class SearchBarComponent implements OnInit {
 
-    public searchPlaceholder = "";
+    public searchPlaceholder = "Search for movies or TV series";
     public inputField: any;
     public routePlaceMapping: any;
 
@@ -23,13 +23,17 @@ export class SearchBarComponent implements OnInit {
             "/tv-series": "Search for TV series",
             "/": "Search for movies or TV series"
         };
-        this.router.events.subscribe(val => {
-            this.searchPlaceholder = this.routePlaceMapping[this.router.url];
-        });
+        
     }
 
     ngOnInit(): void {
         this.inputField = document.getElementById("inputField");
+        this.router.events.subscribe(val => {
+            this.searchPlaceholder = this.routePlaceMapping[this.router.url];
+            this.inputField.value = "";
+            this.showService.searchStr = "";
+            this.showService.isSearching = false;
+        });
     }
 
     public keyDownTest(){        
