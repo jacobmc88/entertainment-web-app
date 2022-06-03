@@ -2,9 +2,9 @@
 
 /* Provide sufficient contrast against white background */
 
-body{
+/* body{
     background-color: #161D2F;
-}
+} */
 
 h1, h2, h3, h4, h5, h6, h7, h8, p{
     color: #FFFF;
@@ -20,6 +20,18 @@ code {
 
 li{
     color:#fff;
+}
+
+.light-background{
+    background-color: #161D2F;
+}
+
+.dark-background{
+    background-color: #10141E;
+}
+
+.form-area{
+    border-radius: 3%;
 }
 
 nav.div.nav-grid{

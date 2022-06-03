@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
@@ -22,6 +23,9 @@ import { TrendingComponent } from './components/trending/trending.component';
 import { RecForYouComponent } from './components/rec-for-you/rec-for-you.component';
 import { TrendingCardComponent } from './components/trending-card/trending-card.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LogoHeaderComponent } from './components/logo-header/logo-header.component';
 
 @NgModule({
   declarations: [
@@ -40,18 +44,24 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
     TrendingComponent,
     RecForYouComponent,
     TrendingCardComponent,
-    BookmarksComponent
+    BookmarksComponent,
+    LoginComponent,
+    SignupComponent,
+    LogoHeaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     IvyCarouselModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'movies', component: MoviesComponent },
       { path: 'tv-series', component: TvSeriesComponent },
       { path: 'bookmarks', component: BookmarksComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
     ])
   ],
   providers: [],

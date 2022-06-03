@@ -1,11 +1,11 @@
 .search-container{
-    background-color: #10141E;
+    /* background-color: #10141E; */
     padding-top: 5%;
     padding-bottom: 5%;
 }
 
 .search-input{
-    background-color: #10141E;
+    /* background-color: #10141E; */
     border:none;
     font-size: 1rem;
     color: #fff;
