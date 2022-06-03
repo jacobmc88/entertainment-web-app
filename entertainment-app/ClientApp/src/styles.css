@@ -41,6 +41,7 @@ li{
     border-right: none !important;
     border-left:none !important;
     border-bottom:solid #fff 1px !important;
+    color: rgb(121, 121, 121);
 }
 
 #avatar{
