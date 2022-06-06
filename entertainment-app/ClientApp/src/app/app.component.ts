@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ShowService } from 'src/app/services/show.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,10 +21,7 @@ export class AppComponent implements OnInit {
         public showService: ShowService
     ){
         
-        this.apiService.getData().subscribe((result: any) => {
-            this.showService.shows = result;
-            // this.apiService.formatData(result);
-            this.showService.setAllData();
+        this.showService.getData().subscribe((result: any) => {
             this.isDataLoaded = true;
         });
     }

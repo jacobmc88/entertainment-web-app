@@ -1,3 +1,7 @@
+using System.Text.Json;
+using entertainment_app.Models;
+using Newtonsoft.Json;
+
 namespace entertainment_app.Services;
 
 using AutoMapper;
@@ -31,6 +35,18 @@ public class UserService : IUserService
         _context = context;
         _jwtUtils = jwtUtils;
         _mapper = mapper;
+        _seedShowsData();
+    }
+
+
+    private void _seedShowsData()
+    {
+        // Seed Shows Data
+        _context.Shows.RemoveRange(_context.Shows);
+        var json = File.ReadAllText("data.json");
+        var shows = JsonConvert.DeserializeObject<List<Show>>(json) ?? throw new Exception("Could not deserialize seed data");
+        _context.Shows.AddRange(shows);
+        _context.SaveChanges();
     }
 
     public AuthenticateResponse Login(AuthenticateRequest model)

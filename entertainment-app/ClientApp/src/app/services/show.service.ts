@@ -1,19 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { Show } from '../models/show';
 import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowService {
-    public shows: any[];
+    public shows: Show[] = [];
     public showsObj: any;
-    public trendingMovies: any;
-    public trendingTvSeries: any;
-    public trendingShows: any;
-    public movies: any;
-    public tvSeries: any;
-    public bookmarkedMovies: any;
-    public bookmarkedTvSeries: any;
+    public trendingMovies: Show[] = [];
+    public trendingTvSeries: Show[] = [];
+    public trendingShows: Show[] = [];
+    public movies: Show[] = [];
+    public tvSeries: Show[] = [];
+    public bookmarkedMovies: Show[] = [];
+    public bookmarkedTvSeries: Show[] = [];
     
     public isSearching = false;
     public searchStr: string;
@@ -21,92 +26,52 @@ export class ShowService {
     public searchResCount: number;
 
     constructor(
-        private apiService: ApiService
-    ) {
-        this.shows = [];        
+        private apiService: ApiService,
+        private http: HttpClient
+    ) {     
         this.showsObj = {};
-        
-        this.trendingMovies = {};
-        this.trendingTvSeries = {};
-        this.trendingShows = {};
-
-        this.movies = {};        
-        this.tvSeries = {};
-
-        this.bookmarkedMovies = {};
-        this.bookmarkedTvSeries = {};
-
         this.searchStr = "";
         this.searchResults = {};
         this.searchResCount = 0;
     }
 
-    public setAllData(){
-        this.showsObj = Object.assign({}, this.shows);
+    public updateBookmark(show: Show){
 
-        for(let i = 0; i < this.shows.length; i++){
-            let show = this.shows[i];
+        // Update on server first
+        this.apiService.updateBookmarks(show).subscribe((res:any) =>{
 
-            if("Movie" === show.category){
-                this.movies[i] = show;
-                if(show.isTrending){
-                    this.trendingMovies[i] = show;
-                    this.trendingShows[i] = show;
-                }
-
-                if(show.isBookmarked){
-                    this.bookmarkedMovies[i] = show;                    
-                }
-
-            }else{
-                //then this is a tv-series
-                this.tvSeries[i] = show;
-                if(show.isTrending){
-                    this.trendingTvSeries[i] = show;
-                    this.trendingShows[i] = show;
-                }
-
-                if(show.isBookmarked){
-                    this.bookmarkedTvSeries[i] = show;
-                }
+            // Update locally
+            if (show.category === 'Movie') {
+                const movie = this.movies.find(s => s === show);
+                const trendingMovie = this.trendingMovies.find(s => s === show);
+                const trendingShow = this.trendingShows.find(s => s === show);
+                const bookmarkedMovie = this.bookmarkedMovies.find(s => s === show);
+                
+                movie.isBookmarked = !movie?.isBookmarked;
+                trendingMovie.isBookmarked = !trendingMovie?.isBookmarked;
+                trendingShow.isBookmarked = !trendingMovie?.isBookmarked;
+                if (bookmarkedMovie) this.bookmarkedMovies.push(movie)
+                else this.bookmarkedMovies = this.bookmarkedMovies.filter(m => m !== movie)
+                movie.isBookmarked = !movie?.isBookmarked;
             }
-        }
-    }
+            else {
+    
+                const existingTvSeries = this.tvSeries.find(s => s === show);
+                const trendingMovie = this.trendingTvSeries.find(s => s === show);
+                const trendingTvSeries = this.trendingShows.find(s => s === show);
+                const bookmarkedMovie = this.bookmarkedTvSeries.find(s => s === show);
+                
+                existingTvSeries.isBookmarked = !existingTvSeries?.isBookmarked;
+                trendingMovie.isBookmarked = !trendingMovie?.isBookmarked;
+                trendingTvSeries.isBookmarked = !trendingMovie?.isBookmarked;
+                if (bookmarkedMovie) this.bookmarkedTvSeries.push(existingTvSeries)
+                else this.bookmarkedTvSeries = this.bookmarkedTvSeries.filter(m => m !== existingTvSeries)
+                existingTvSeries.isBookmarked = !existingTvSeries?.isBookmarked;
+            }
+    
+            const existingShow = this.shows.find(s => s === show);
+            if (existingShow) existingShow.isBookmarked = !existingShow.isBookmarked;
 
-    public updateBookmark(type: string, key: string){
-        if("Movie" === type){
-            this.movies[key].isBookmarked = !(this.movies[key].isBookmarked);
-            if(key in this.trendingMovies){
-                this.trendingMovies[key].isBookmarked = !(this.trendingMovies[key].isBookmarked);
-                this.trendingShows[key].isBookmarked = !(this.trendingShows[key].isBookmarked);
-            }
-            if(key in this.bookmarkedMovies){
-                //then remove from this
-                delete this.bookmarkedMovies[key];
-            }else{
-                //otherwise add this
-                this.bookmarkedMovies[key] = this.movies[key];                
-            }            
-        }else{
-            //then is tv-series            
-            this.tvSeries[key].isBookmarked = !(this.tvSeries[key].isBookmarked);
-            if(key in this.trendingTvSeries){
-                this.trendingTvSeries[key].isBookmarked = !(this.trendingTvSeries[key].isBookmarked);
-                this.trendingShows[key].isBookmarked = !(this.trendingShows[key].isBookmarked);
-            }
-            if(key in this.bookmarkedTvSeries){
-                //then remove from this
-                delete this.bookmarkedTvSeries[key];
-            }else{
-                //otherwise add this
-                this.bookmarkedTvSeries[key] = this.movies[key];                
-            }
-        }
-
-        this.shows[parseInt(key)].isBookmarked = !(this.shows[parseInt(key)].isBookmarked);
-        this.showsObj[key].isBookmarked = !(this.showsObj[key].isBookmarked); 
-        
-        this.apiService.updateBookmarks(JSON.stringify(this.shows)).subscribe((res:any) =>{
             console.log(res);
         });
     }
@@ -144,5 +109,11 @@ export class ShowService {
                 this.searchResCount++;
             }
         }
+    }
+
+
+    public getData(): Observable<Show[]>{
+        return this.http.get<Show[]>("server/shows")
+        .pipe(tap(showsFromServer => this.shows = showsFromServer));
     }
 }
