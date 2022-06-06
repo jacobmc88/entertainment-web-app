@@ -1,7 +1,7 @@
 <h3>Recommended for you</h3>
 <br />
 <div class="grid-container">
-    <app-show-card *ngFor="let show of recShows | keyvalue" 
-                    showIndex={{show.key}}  id="{{show.key}}">            
+    <app-show-card *ngFor="let show of recShows" 
+                    [show]="show">            
     </app-show-card>
 </div>

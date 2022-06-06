@@ -8,7 +8,7 @@ import { ShowService } from 'src/app/services/show.service';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-    public movies = {};
+    public movies = [];
 
     constructor(
         public router: Router,

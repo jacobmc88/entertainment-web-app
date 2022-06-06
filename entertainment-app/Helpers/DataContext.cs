@@ -1,3 +1,5 @@
+using entertainment_app.Models;
+
 namespace entertainment_app.Helpers;
 
 using Microsoft.EntityFrameworkCore;
@@ -19,4 +21,6 @@ public class DataContext : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+
+    public DbSet<Show> Shows { get; set; }
 }

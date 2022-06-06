@@ -2,7 +2,7 @@
 <h3 *ngIf="router.url === '/bookmarks'">Bookmarked Movies</h3>
 <br />
 <div class="grid-container">
-    <app-show-card *ngFor="let movie of movies | keyvalue" 
-                    showIndex={{movie.key}}  id="{{movie.key}}">            
+    <app-show-card *ngFor="let movie of movies" 
+                    [show]="movie">            
     </app-show-card>
 </div>
