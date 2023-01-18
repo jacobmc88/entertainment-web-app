@@ -8,7 +8,7 @@ import { ShowService } from 'src/app/services/show.service';
   styleUrls: ['./tv-series.component.css']
 })
 export class TvSeriesComponent implements OnInit {
-    public tvSeries = {};
+    public tvSeries = [];
 
     constructor(
         public router: Router,

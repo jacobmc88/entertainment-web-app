@@ -1,8 +1,12 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection;
 using entertainment_app.Authorization;
 using entertainment_app.Helpers;
+using entertainment_app.Models;
 using entertainment_app.Services;
+using Json.Net;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 var builder = WebApplication.CreateBuilder(args);
 

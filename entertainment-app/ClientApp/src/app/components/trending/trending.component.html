@@ -2,8 +2,8 @@
 <br />
 <div>
     <carousel [autoplay]="true" [pauseOnHover]="true" [loop]="true" [arrows]="false" [height]="200" [cellWidth]="300">
-        <app-trending-card *ngFor="let show of trendingShows | keyvalue" 
-                        class="carousel-cell" showIndex={{show.key}}  id="{{show.key}}">            
+        <app-trending-card *ngFor="let show of trendingShows" 
+                        class="carousel-cell" [show]="show">            
         </app-trending-card>
     </carousel>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Show } from 'src/app/models/show';
 import { ShowService } from 'src/app/services/show.service';
 
 @Component({
@@ -9,9 +10,8 @@ import { ShowService } from 'src/app/services/show.service';
 export class TrendingCardComponent implements OnInit {
 
     public showList: any;
-    public show: any;
     public isBookmarked: boolean;
-
+    @Input() public show: Show = {} as any;
     constructor(
         public showService: ShowService
     ) {
@@ -19,16 +19,15 @@ export class TrendingCardComponent implements OnInit {
         this.isBookmarked = false;
     }
 
-    @Input() showIndex: any;
+    
 
     ngOnInit(): void {
-        this.show = this.showList[this.showIndex];
         this.isBookmarked = this.show.isBookmarked;
     }
 
     public test(){
         console.log("trending-card component");
-        console.log("Hello from the test! Id: " + this.showIndex);
+        //console.log("Hello from the test! Id: " + this.showIndex);
     }
 
 }

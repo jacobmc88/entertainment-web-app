@@ -1,5 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Show } from '../models/show';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +12,9 @@ export class ApiService {
     constructor(
         private http : HttpClient
     ) { }
-
-    public getData(){
-        return this.http.get<any>("server/shows");
-    }
     
-    public updateBookmarks(data:string){
-        const jsonHeader = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-        return this.http.post<any>('server/shows/update-bookmarks', data, {headers:jsonHeader });
+    public updateBookmarks(show: Show): Observable<Show> {
+        return this.http.post<Show>('server/shows/update-bookmarks', show);
 
     }
 }
