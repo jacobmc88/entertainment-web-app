@@ -1,0 +1,14 @@
+
+<app-logo-header [ngClass]="'test'" *ngIf="isLoginOrSignup"></app-logo-header>
+<div id="top-space"></div>
+<div id="nav-search-container" class="fixed-top dark-background">
+    <app-nav-menu *ngIf="!isLoginOrSignup"></app-nav-menu>
+    <app-search-bar *ngIf="!isLoginOrSignup"></app-search-bar>
+</div>
+<div *ngIf="showService.isSearching" class="container">
+    <app-search-results></app-search-results>
+</div>
+<div *ngIf="isDataLoaded && !showService.isSearching" class="container">
+    <router-outlet></router-outlet>
+</div>
+
