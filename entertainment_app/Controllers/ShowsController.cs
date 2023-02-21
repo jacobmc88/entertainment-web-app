@@ -28,20 +28,18 @@ public class ShowsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetShows()
     {
-        // var shows = await _context.Shows
-        //     .Include(s => s.Thumbnail)
-        //     .ThenInclude(t => t.Regular)
-        //     .ToListAsync();
+        var shows = await _context.Shows
+            .Include(s => s.Thumbnail)
+            .ThenInclude(t => t.Regular)
+            .ToListAsync();
 
-        var shows = await _context.Shows.ToListAsync();
         return Ok(shows);
     }
 
     [HttpPost("update-bookmarks")]
     public async Task<IActionResult> UpdateBookmarks(Show updatedShow) {
-        Console.WriteLine("update-bookmarks");
         var existingShow = await _context.Shows.FirstOrDefaultAsync(s => s.Id == updatedShow.Id);
-        Console.WriteLine(JsonSerializer.Serialize(existingShow));
+        var shows = await _context.Shows.ToListAsync();
 
         if (existingShow == null){
             return NotFound();

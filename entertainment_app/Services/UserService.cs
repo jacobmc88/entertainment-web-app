@@ -35,11 +35,11 @@ public class UserService : IUserService
         _context = context;
         _jwtUtils = jwtUtils;
         _mapper = mapper;
-        _seedShowsData();
+        // _seedShowsData();
     }
 
 
-    private void _seedShowsData()
+    public void _seedShowsData()
     {
         // Seed Shows Data
         _context.Shows.RemoveRange(_context.Shows);
