@@ -16,8 +16,6 @@ export class TrendingComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log("trending.comp. trendingShows:");
-        console.log(this.trendingShows);
     }
 
 }

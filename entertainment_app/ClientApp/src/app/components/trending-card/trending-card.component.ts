@@ -25,9 +25,4 @@ export class TrendingCardComponent implements OnInit {
         this.isBookmarked = this.show.isBookmarked;
     }
 
-    public test(){
-        console.log("trending-card component");
-        //console.log("Hello from the test! Id: " + this.showIndex);
-    }
-
 }

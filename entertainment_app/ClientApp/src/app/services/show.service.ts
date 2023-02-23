@@ -44,20 +44,20 @@ export class ShowService {
 
             // Update locally
             if (show.category === 'Movie') {
-                console.log('a');
                 const movie = this.movies.find(s => s === show);
-                console.log('b');
                 const trendingMovie = this.trendingMovies.find(s => s === show);
                 const trendingShow = this.trendingShows.find(s => s === show);
                 const bookmarkedMovie = this.bookmarkedMovies.find(s => s === show);
                 
                 movie.isBookmarked = !movie?.isBookmarked;
-                trendingMovie.isBookmarked = !trendingMovie?.isBookmarked;
-                trendingShow.isBookmarked = !trendingMovie?.isBookmarked;
+                if(show.isTrending){
+                    trendingMovie.isBookmarked = !trendingMovie?.isBookmarked;
+                    trendingShow.isBookmarked = !trendingMovie?.isBookmarked;
+                }
                 if (bookmarkedMovie) { 
-                    this.bookmarkedMovies.push(movie)
+                    this.bookmarkedMovies.push(movie);
                 } else {
-                    this.bookmarkedMovies = this.bookmarkedMovies.filter(m => m !== movie)
+                    this.bookmarkedMovies = this.bookmarkedMovies.filter(m => m !== movie);
                 }
                 movie.isBookmarked = !movie?.isBookmarked;
             }
@@ -84,7 +84,6 @@ export class ShowService {
                 existingShow.isBookmarked = !existingShow.isBookmarked;
             }
 
-            console.log(res);
         });
     }
 

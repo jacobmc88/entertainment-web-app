@@ -15,21 +15,21 @@ export class ShowCardComponent implements OnInit {
     constructor(
         public showService: ShowService
     ) { 
-        this.isMovieList = false;
-        this.isTvSeriesList = false;
-        this.isBookmarkMovieList = false;
-        this.isBookmarkTvSeriesList = false;
+        // this.isMovieList = false;
+        // this.isTvSeriesList = false;
+        // this.isBookmarkMovieList = false;
+        // this.isBookmarkTvSeriesList = false;
         
         this.showList = this.showService.shows;
         this.isBookmarked = false;
     }
 
     @Input() show: Show = {} as any;
-    @Input() isMovieList: boolean;
-    @Input() isTvSeriesList: boolean;
+    // @Input() isMovieList: boolean;
+    // @Input() isTvSeriesList: boolean;
 
-    @Input() isBookmarkMovieList: boolean;
-    @Input() isBookmarkTvSeriesList: boolean;
+    // @Input() isBookmarkMovieList: boolean;
+    // @Input() isBookmarkTvSeriesList: boolean;
 
     ngOnInit(): void {        
         this.isBookmarked = this.show.isBookmarked;
