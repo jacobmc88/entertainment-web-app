@@ -1,7 +1,9 @@
 <h3>Found {{showService.searchResCount}} results for '{{showService.searchStr}}'</h3>
 <br />
 <div class="grid-container">
-    <app-show-card *ngFor="let show of showService.searchResults" 
-                    [show]="show">            
+
+    <app-show-card *ngFor="let showMap of showService.searchResults.value | keyvalue" 
+                    [show]="showMap.value">
     </app-show-card>
+
 </div>

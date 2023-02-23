@@ -38,7 +38,6 @@ export class SearchBarComponent implements OnInit {
 
     public keyDownTest(){        
         this.showService.searchStr = this.inputField.value;
-        console.log(this.showService.searchStr);
         if(0 === this.showService.searchStr.length){
             this.showService.isSearching = false;            
         

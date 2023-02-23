@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { Show } from '../models/show';
@@ -22,7 +22,8 @@ export class ShowService {
     
     public isSearching = false;
     public searchStr: string;
-    public searchResults: any;
+    // public searchResults: any;
+    public searchResults: BehaviorSubject<Map<number, Show>>;
     public searchResCount: number;
 
     constructor(
@@ -31,7 +32,8 @@ export class ShowService {
     ) {     
         this.showsObj = {};
         this.searchStr = "";
-        this.searchResults = {};
+        // this.searchResults = {};
+        this.searchResults = new BehaviorSubject<Map<number, Show>>(new Map<number, Show>());
         this.searchResCount = 0;
     }
 
@@ -110,12 +112,12 @@ export class ShowService {
     }
 
     public searchHelper(searchObj: any){
-        this.searchResults = {};
+        this.searchResults = new BehaviorSubject<Map<number, Show>>(new Map<number, Show>());
         this.searchResCount = 0;
         for(const key in searchObj){
             if( (searchObj[key].title).toLowerCase().includes(this.searchStr.toLowerCase())){
-                //then we have a match
-                this.searchResults[key] = searchObj[key];
+                //then we have a match      
+                this.searchResults.value.set(parseInt(key), searchObj[key]);
                 this.searchResCount++;
             }
         }

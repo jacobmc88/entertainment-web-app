@@ -36,12 +36,7 @@ export class ShowCardComponent implements OnInit {
     }
 
     public switchBookmarkMode(show: Show): void {
-        console.log('switchBookMarkMode()');
         this.showService.updateBookmark(show);
-    }
-
-    public test(){
-        console.log("show-card component");
     }
 
 }
